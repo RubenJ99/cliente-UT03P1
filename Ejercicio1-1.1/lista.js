@@ -41,10 +41,10 @@ function get(list,index) {
 
 function toString(list) {
   let nList = list.map((book)=>{
-    book
+    return JSON.stringify(book);
   }).join("-");
 
-  return ""+nList;
+  return nList;
 }
 
 function indexOf(list,elem) {
@@ -90,5 +90,5 @@ const lista = create();
 add(lista,book);
 add(lista,book);
 add(lista,book);
-console.log(toString(lista));
+console.log(typeof(toString(lista)));
 

@@ -2,7 +2,7 @@
 const limite = 10;
 
 let book = {
-  ISBN: 978 - 84 - 9804 - 654 - 0,
+  ISBN: "978 - 84 - 9804 - 654 - 0",
   title: "ElQuijote",
   author: "MigueldeCervantes",
   publicationDate: new Date(1605, 0, 1),
@@ -10,7 +10,7 @@ let book = {
 };
 
 let book2 = {
-  ISBN: 988 - 84 - 9804 - 654 - 0,
+  ISBN: "988 - 84 - 9804 - 654 - 0",
   title: "ElQuijote",
   author: "MigueldeCervantes",
   publicationDate: new Date(1605, 0, 1),
@@ -49,7 +49,7 @@ function get(list,index) {
 function toString(list) {
   let nList = list.map((book)=>{
     return JSON.stringify(book);
-  }).join("-");
+  }).join("-\n");
 
   return nList;
 }
@@ -104,11 +104,13 @@ function lastElement(list) {
 }
 
 function remove(list,index) {
-	let a = [];
-	a.splice
+	let aux = list[i];
+	list.splice(index,1);
+	return aux;
 }
 
 function removeElement(list,elem) {
+	return list.splice(list.findIndex(elem),1);
 
 }
 
@@ -124,6 +126,5 @@ add(lista,book);
 add(lista,book);
 add(lista,book2);
 addAt(lista,book2,1);
-console.log(lastIndexOf(lista,book2));
-console.log(indexOf(lista,book2));
+console.log(toString(lista));
 

@@ -18,8 +18,7 @@ let book2 = {
 };
 
 function create() {
-  let list = [];
-  return list;
+  return [];
 }
 function isEmpty(list) {
   return (list.length === 0);

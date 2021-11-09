@@ -36,11 +36,15 @@ function addAt(list,elem,index) {
 }
 
 function get(list,index) {
-  
+  return list[index];
 }
 
 function toString(list) {
-  
+  let nList = list.map((book)=>{
+    book
+  }).join("-");
+
+  return ""+nList;
 }
 
 function indexOf(list,elem) {
@@ -82,5 +86,9 @@ function set(list,elem,index) {
 
 
 const lista = create();
-console.log(lista);
+
+add(lista,book);
+add(lista,book);
+add(lista,book);
+console.log(toString(lista));
 

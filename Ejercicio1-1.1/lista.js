@@ -1,22 +1,4 @@
 'use strict';
-const limite = 10;
-
-let book = {
-  ISBN: "978 - 84 - 9804 - 654 - 0",
-  title: "ElQuijote",
-  author: "MigueldeCervantes",
-  publicationDate: new Date(1605, 0, 1),
-  price: 20,
-};
-
-let book2 = {
-  ISBN: "988 - 84 - 9804 - 654 - 0",
-  title: "ElQuijote",
-  author: "MigueldeCervantes",
-  publicationDate: new Date(1605, 0, 1),
-  price: 20,
-};
-
 function create() {
   return [];
 }
@@ -25,7 +7,7 @@ function isEmpty(list) {
 }
 
 function isFull(list){
-  return (list.length === limite);
+  return (list.length === LIMITE_ARR);
 }
 
 function size(list) {
@@ -88,11 +70,11 @@ function lastIndexOf(list,elem) {
 }
 
 function capacity(list) {
-//Preguntar a pablo
+	return LIMITE_ARR;
 }
 
 function clear(list) {
-	return list = [];
+	list.length = 0;
 }
 
 function firstElement(list) {
@@ -104,27 +86,60 @@ function lastElement(list) {
 }
 
 function remove(list,index) {
-	let aux = list[i];
+	let aux = list[index];
 	list.splice(index,1);
 	return aux;
 }
 
 function removeElement(list,elem) {
-	return list.splice(list.findIndex(elem),1);
+	return list.splice(list.findIndex(obj => elem),1);
 
 }
 
 function set(list,elem,index) {
-
+	let prev = list[index];
+	list[index] = elem;
+	return prev;
 }
 
+const LIMITE_ARR = 10;
+const book = {
+  ISBN: "978 - 84 - 9804 - 654 - 0",
+  title: "ElQuijote",
+  author: "MigueldeCervantes",
+  publicationDate: new Date(1605, 0, 1),
+  price: 20,
+};
+const book2 = Object.assign({},book);
+const book3 = Object.assign({},book);
+book2.ISBN = "100 - 84 - 9804 - 654 - 0";
+book3.ISBN = "200 - 84 - 9804 - 654 - 0";
 
 
-const lista = create();
-add(lista,book);
-add(lista,book);
-add(lista,book);
-add(lista,book2);
-addAt(lista,book2,1);
-console.log(toString(lista));
+function testing() {
+	let list = create();
+	console.log("Esta la lista vacia? " + isEmpty(list));
+	console.log("Esta la lista llena? " + isFull(list));
+	console.log("El tamaño de la lista es: " + size(list));
+	console.log("Elemento añadido, nuevo tamaño: " + add(list,book));
+	console.log("Elemento añadido en la posicion especificada, nuevo tamaño: " + addAt(list,book2,0));
+	console.log("El elemento que ha seleccionado es este: " + JSON.stringify(get(list,0)));
+	console.log("Esta es toda la lista: " + toString(list));
+	console.log("Primera posicion del objeto deseado en la lista: " + indexOf(list,book2));
+	add(list,book3);
+	add(list,book);
+	add(list,book3);
+	console.log("Ultima posicion del objeto deseado en la lista: " + lastIndexOf(list,book3));
+	console.log("Capacidad maxima de la lista: " + capacity(list));
+	let list2 = [...list];
+	console.log("Tamaño de la lista antes del borrado: " + size(list2));
+	clear(list2);
+	console.log("Despues del borrado: " + size(list2));
+	console.log("Primer elemento de la lista: " + JSON.stringify(firstElement(list)));
+	console.log("Ultimo elemento de la lista: " + JSON.stringify(lastElement(list)));
+	console.log("Este es el elemento eliminado dado index: " + JSON.stringify(remove(list,3)));
+	console.log("Este es el elemento eliminado dado un elem: " + JSON.stringify(removeElement(list,book3)));
+	console.log("Este es el elemento que ha sido modificado: " + JSON.stringify(set(list,book2,0)));
+}
 
+testing();

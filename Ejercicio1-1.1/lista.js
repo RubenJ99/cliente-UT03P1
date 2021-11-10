@@ -15,6 +15,7 @@ function size(list) {
 }
 
 function add(list,elem) {
+	if(typeof(elem) === 'object' || !'ISBN' in elem || !'title' in elem) throw 'Este objeto no es un libro';
   list.push(elem);
   return list.length;
 }

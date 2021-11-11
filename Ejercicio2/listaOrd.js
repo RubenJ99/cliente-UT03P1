@@ -1,4 +1,5 @@
 'use strict';
+//RUBEN JUAREZ PEREZ 1DAW
 /**
  *
  * @param {*} elem Parametro por el que pasamos un valor cualquiera y comprueba que sea un objeto Book

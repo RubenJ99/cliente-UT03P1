@@ -227,26 +227,42 @@ function testing() {
 	try {
 		console.log("Elemento añadido, nuevo tamaño: " + add(list,book));
 	} catch (error) {console.error(error)}
-	console.log("Elemento añadido en la posicion especificada, nuevo tamaño: " + addAt(list,book2,0));
+	try {
+		console.log("Elemento añadido en la posicion especificada, nuevo tamaño: " + addAt(list,book2,0));
+	} catch (error) {console.error(error)}
 	try {
 		console.log("El elemento que ha seleccionado es este: " + JSON.stringify(get(list,0)));
 	} catch (error) { console.error(error)}
 	console.log("Esta es toda la lista: " + toString(list));
-	console.log("Primera posicion del objeto deseado en la lista: " + indexOf(list,book2));
+	try {
+		console.log("Primera posicion del objeto deseado en la lista: " + indexOf(list,book2));
+	} catch (error) {console.error(error)}
 	add(list,book3);
 	add(list,book);
 	add(list,book3);
-	console.log("Ultima posicion del objeto deseado en la lista: " + lastIndexOf(list,book3));
+	try {
+		console.log("Ultima posicion del objeto deseado en la lista: " + lastIndexOf(list,book3));
+	} catch (error) {console.error(error)}
 	console.log("Capacidad maxima de la lista: " + capacity(list));
 	let list2 = [...list];
 	console.log("Tamaño de la lista antes del borrado: " + size(list2));
 	clear(list2);//No capturo porque las void function retorna undefined
 	console.log("Despues del borrado: " + size(list2));
-	console.log("Primer elemento de la lista: " + JSON.stringify(firstElement(list)));
-	console.log("Ultimo elemento de la lista: " + JSON.stringify(lastElement(list)));
-	console.log("Este es el elemento eliminado dado index: " + JSON.stringify(remove(list,3)));
-	console.log("Se ha conseguido eliminar el elemento?: " + removeElement(list,book3));
-	console.log("Este es el elemento que ha sido modificado: " + JSON.stringify(set(list,book2,0)));
+	try {
+		console.log("Primer elemento de la lista: " + JSON.stringify(firstElement(list)));
+	} catch (error) {console.error(error)}
+	try {
+		console.log("Ultimo elemento de la lista: " + JSON.stringify(lastElement(list)));
+	} catch (error) {console.error(error)}
+	try {
+		console.log("Este es el elemento eliminado dado index: " + JSON.stringify(remove(list,3)));
+	} catch (error) {console.error(error)}
+	try {
+		console.log("Se ha conseguido eliminar el elemento?: " + removeElement(list,book3));
+	} catch (error) {console.error(error)}
+	try {
+		console.log("Este es el elemento que ha sido modificado: " + JSON.stringify(set(list,book2,0)));
+	} catch (error) {console.error(error)}
 }
 //ENTRADA DE EJECUCION
 testing();

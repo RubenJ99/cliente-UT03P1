@@ -1,4 +1,13 @@
 'use strict';
+
+function isBook(elem) {
+	return (typeof(elem) !== 'object' || !'ISBN' in elem || !'title' in elem);
+}
+
+function isValidIndex(index) {
+	return (Number.isNaN(index) || index < 0 || index > LIMITE_ARR);
+}
+
 function create() {
   return [];
 }
@@ -15,18 +24,22 @@ function size(list) {
 }
 
 function add(list,elem) {
-	if(typeof(elem) !== 'object' || !'ISBN' in elem || !'title' in elem) throw 'Este objeto no es un libro';
+	if(!isBook(elem)) throw 'This element is not a Book';
+	if(isFull(list)) throw 'List is full';
   list.push(elem);
   return list.length;
 }
 
 function addAt(list,elem,index) {
+	if(!isBook(elem)) throw 'This element is not a Book';
+	if(!isValidIndex(index)) throw 'Index is out of bounds';
+	if(isFull(list)) throw 'List is full';
   list.splice(index,0,elem);
   return list.length;
 }
 
 function get(list,index) {
-	if(index < 0 || index > LIMITE_ARR || Number.isNaN(index)) throw "Valor index invalido";
+	if(!isValidIndex(index)) throw 'Index is out of bounds';
   return list[index];
 }
 
@@ -39,6 +52,7 @@ function toString(list) {
 }
 
 function indexOf(list,elem) {
+	if(!isBook(elem)) throw 'This element is not a Book';
 	let idx = -1;
 	for (let i = 0; i < list.length; i++) {
 		if(elem.ISBN === list[i].ISBN){
@@ -50,6 +64,7 @@ function indexOf(list,elem) {
 }
 
 function lastIndexOf(list,elem) {
+	if(!isBook(elem)) throw 'This element is not a Book';
 	let idx = -1;
 	for (let i = list.length-1; i > 0; i--) {
 		if(elem.ISBN === list[i].ISBN){
@@ -69,25 +84,31 @@ function clear(list) {
 }
 
 function firstElement(list) {
+	if(isEmpty(list)) throw 'List is empty';
 	return list[0];
 }
 
 function lastElement(list) {
+	if(isEmpty(list)) throw 'List is empty';
 	return list[list.length-1];
 }
 
 function remove(list,index) {
+	if(!isValidIndex(index)) throw 'Index is out of bounds';
 	let aux = list[index];
 	list.splice(index,1);
 	return aux;
 }
 
 function removeElement(list,elem) {
+	if(!isBook(elem)) throw 'This element is not a Book';
 	return list.splice(list.findIndex(obj => elem),1);
 
 }
 
 function set(list,elem,index) {
+	if(!isBook(elem)) throw 'This element is not a Book';
+	if(!isValidIndex(index)) throw 'Index is out of bounds';
 	let prev = list[index];
 	list[index] = elem;
 	return prev;

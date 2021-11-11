@@ -46,6 +46,7 @@ function isFull(list){
 function size(list) {
   return list.length;
 }
+
 /**
  *
  * @param {*} list Parametro lista sobre el que operamos
@@ -55,23 +56,11 @@ function size(list) {
 function add(list,elem) {
 	if(!isBook(elem)) throw 'This element is not a Book';
 	if(isFull(list)) throw 'List is full';
-  list.push(elem);
+  list.push(elem)
+	list.sort((a, b) => a.ISBN.localeCompare(b.ISBN));
   return list.length;
 }
-/**
- *
- * @param {*} list Parametro lista sobre el que operamos
- * @param {*} elem Parametro book que insertaremos sobre la lista pasada
- * @param {*} index Parametro indice con el que indicaremos la posicion en la que insertar el nuevo libro
- * @returns Number
- */
-function addAt(list,elem,index) {
-	if(!isBook(elem)) throw 'This element is not a Book';
-	if(!isValidIndex(index)) throw 'Index is out of bounds';
-	if(isFull(list)) throw 'List is full';
-  list.splice(index,0,elem);
-  return list.length;
-}
+
 /**
  *
  * @param {*} list Parametro lista sobre el que operamos
@@ -114,23 +103,7 @@ function indexOf(list,elem) {
 	}
 	return (idx >= 0) ? idx : 1;
 }
-/**
- *
- * @param {*} list Parametro lista sobre el que operaremos para encontrar la ultima ocurrencia el libro pasado en el siguiente param
- * @param {*} elem Parametro en el que pasamos el objeto del cual queremos saber su ultima ocurrencia
- * @returns Number
- */
-function lastIndexOf(list,elem) {
-	if(!isBook(elem)) throw 'This element is not a Book';
-	let idx = -1;
-	for (let i = list.length-1; i > 0; i--) {
-		if(elem.ISBN === list[i].ISBN){
-			idx = i;
-			break;
-		}
-	}
-	return (idx >= 0) ? idx : -1;
-}
+
 /**
  *
  * @param {*} list Parametro en el cual pasamos la lista de la cual queremos saber el maximo de capacidad del mismo
@@ -189,21 +162,7 @@ function removeElement(list,elem) {
 	return (list.splice(list.findIndex(obj => elem),1))? true : false;
 
 }
-/**
- *
- * @param {*} list Parametro en el cual pasamos la lista sobra la que realizaremos la operacion de insertado
- * @param {*} elem Parametro en el cual tenemos un Book el cual insertaremos dentro de la lista
- * @param {*} index Parametro indice el cual usaremos para indicar la posicion dentro de la lista donde insertaremos el anteriro elemento,
- * previamente se debe de guardar el elemento que estaba en esa posicion y retornarlo
- * @returns Object
- */
-function set(list,elem,index) {
-	if(!isBook(elem)) throw 'This element is not a Book';
-	if(!isValidIndex(index)) throw 'Index is out of bounds';
-	let prev = list[index];
-	list[index] = elem;
-	return prev;
-}
+
 //DEFINICION DE DATOS PARA TESTING
 const LIMITE_ARR = 10;
 const book = {
@@ -228,9 +187,6 @@ function testing() {
 		console.log("Elemento añadido, nuevo tamaño: " + add(list,book));
 	} catch (error) {console.error(error)}
 	try {
-		console.log("Elemento añadido en la posicion especificada, nuevo tamaño: " + addAt(list,book2,0));
-	} catch (error) {console.error(error)}
-	try {
 		console.log("El elemento que ha seleccionado es este: " + JSON.stringify(get(list,0)));
 	} catch (error) { console.error(error)}
 	console.log("Esta es toda la lista: " + toString(list));
@@ -240,9 +196,7 @@ function testing() {
 	add(list,book3);
 	add(list,book);
 	add(list,book3);
-	try {
-		console.log("Ultima posicion del objeto deseado en la lista: " + lastIndexOf(list,book3));
-	} catch (error) {console.error(error)}
+
 	console.log("Capacidad maxima de la lista: " + capacity(list));
 	let list2 = [...list];
 	console.log("Tamaño de la lista antes del borrado: " + size(list2));
@@ -260,9 +214,7 @@ function testing() {
 	try {
 		console.log("Se ha conseguido eliminar el elemento?: " + removeElement(list,book3));
 	} catch (error) {console.error(error)}
-	try {
-		console.log("Este es el elemento que ha sido modificado: " + JSON.stringify(set(list,book2,0)));
-	} catch (error) {console.error(error)}
+
 }
 //ENTRADA DE EJECUCION
 testing();

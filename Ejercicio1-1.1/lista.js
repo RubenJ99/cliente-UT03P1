@@ -15,7 +15,7 @@ function size(list) {
 }
 
 function add(list,elem) {
-	if(typeof(elem) === 'object' || !'ISBN' in elem || !'title' in elem) throw 'Este objeto no es un libro';
+	if(typeof(elem) !== 'object' || !'ISBN' in elem || !'title' in elem) throw 'Este objeto no es un libro';
   list.push(elem);
   return list.length;
 }
@@ -26,6 +26,7 @@ function addAt(list,elem,index) {
 }
 
 function get(list,index) {
+	if(index < 0 || index > LIMITE_ARR || Number.isNaN(index)) throw "Valor index invalido";
   return list[index];
 }
 
@@ -36,17 +37,6 @@ function toString(list) {
 
   return nList;
 }
-//Tiene que haber una forma de hacerlo asi
-
-// function indexOf(list,elem) {
-// 	let i = 0;
-//   list.forEach((item,index) => {
-// 		if(item.ISBN === elem.ISBN){
-// 			i = index;
-// 		}
-// 	});
-// 	return (i >= 0) ? i : 1;
-// }
 
 function indexOf(list,elem) {
 	let idx = -1;
@@ -122,9 +112,13 @@ function testing() {
 	console.log("Esta la lista vacia? " + isEmpty(list));
 	console.log("Esta la lista llena? " + isFull(list));
 	console.log("El tamaño de la lista es: " + size(list));
-	console.log("Elemento añadido, nuevo tamaño: " + add(list,book));
+	try {
+		console.log("Elemento añadido, nuevo tamaño: " + add(list,book));
+	} catch (error) {console.error(error)}
 	console.log("Elemento añadido en la posicion especificada, nuevo tamaño: " + addAt(list,book2,0));
-	console.log("El elemento que ha seleccionado es este: " + JSON.stringify(get(list,0)));
+	try {
+		console.log("El elemento que ha seleccionado es este: " + JSON.stringify(get(list,0)));
+	} catch (error) { console.error(error)}
 	console.log("Esta es toda la lista: " + toString(list));
 	console.log("Primera posicion del objeto deseado en la lista: " + indexOf(list,book2));
 	add(list,book3);

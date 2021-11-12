@@ -208,7 +208,7 @@ function set(list,elem,index) {
 //DEFINICION DE DATOS PARA TESTING
 const LIMITE_ARR = 10;
 const book = {
-  ISBN: "978 - 84 - 9804 - 654 - 0",
+  ISBN: "978-84-9804-654-0",
   title: "ElQuijote",
   author: "MigueldeCervantes",
   publicationDate: new Date(1605, 0, 1),
@@ -216,8 +216,8 @@ const book = {
 };
 const book2 = Object.assign({},book);
 const book3 = Object.assign({},book);
-book2.ISBN = "100 - 84 - 9804 - 654 - 0";
-book3.ISBN = "200 - 84 - 9804 - 654 - 0";
+book2.ISBN = "100-84-9804-654-0";
+book3.ISBN = "200-84-9804-654-0";
 
 //FUNCION DE TESTEO DE TODO EL FICHERO
 function testing() {

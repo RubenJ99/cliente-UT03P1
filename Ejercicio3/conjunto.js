@@ -23,7 +23,7 @@ function size(list) {
 	return list.size;
 }
 
-function add(list,elem) { //Preguntar pablo si es a pillar
+function add(list,elem) {
 	if(!isBook(elem)) throw 'This element is not a Book';
 	if(list.has(elem)) throw 'This element is already contained in this set';
 	if(regexISBN.test(elem.ISBN)) throw 'ISBN does not match the required style'
@@ -49,7 +49,7 @@ function clear(list) {
 	list.size = 0;
 }
 
-function remove(list,elem) { //Preguntar si es bait
+function remove(list,elem) {
 	if(!isBook(elem)) throw 'This element is not a Book';
 	list.forEach(book =>{
 		if(book.ISBN === elem.ISBN){
@@ -86,3 +86,4 @@ console.log(toString(libs));
 
 //ENTRADA DE EJECUCION
 testing();
+

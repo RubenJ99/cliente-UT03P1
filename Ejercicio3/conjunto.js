@@ -1,5 +1,6 @@
 'use strict';
 //RUBEN JUAREZ PEREZ 1DAW
+const regexISBN = /\d{3} \- \d{2} \- \d{4} \- \d{3} \- \d/g;
 /**
  *
  * @param {*} elem Parametro por el que pasamos un valor cualquiera y comprueba que sea un objeto Book
@@ -8,7 +9,7 @@
  function isBook(elem) {
 	return (typeof(elem) === 'object' && 'ISBN' in elem && 'title' in elem);
 }
-
+//TODO regex
 
 function create() {
 	return new Set();
@@ -25,6 +26,7 @@ function size(list) {
 function add(list,elem) { //Preguntar pablo si es a pillar
 	if(!isBook(elem)) throw 'This element is not a Book';
 	if(list.has(elem)) throw 'This element is already contained in this set';
+	if(regexISBN.test(elem.ISBN)) throw 'ISBN does not match the required style'
 	list.add(elem);
 	return list.size;
 }

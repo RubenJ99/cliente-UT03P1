@@ -57,7 +57,7 @@ function size(list) {
 function add(list,elem) {
 	if(!isBook(elem)) throw 'This element is not a Book';
 	if(isFull(list)) throw 'List is full';
-  list.push(elem)
+  list.push(elem);
 	list.sort((a, b) => a.ISBN.localeCompare(b.ISBN));
   return list.length;
 }
